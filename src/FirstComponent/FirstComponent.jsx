@@ -1,60 +1,53 @@
 import axios from "axios";
-import { useState } from "react";
+import React, { useCallback, useState } from "react";
 
-function FirstComponent() {
-  const [name, setName] = useState("");
-  const [data, setData] = useState(null);
+const FirstComponent = () => {
+  const [suggestions, setSuggestions] = useState("");
 
-  const debounce = (func, delay) => {
-    let debounceTimer;
-    return function () {
+  const debounce = (func) => {
+    let timer;
+    return function (...args) {
       const context = this;
-      const args = arguments;
-      clearTimeout(debounceTimer);
-      debounceTimer = setTimeout(() => func.apply(context, args), delay);
+      if (timer) clearTimeout(timer);
+      timer = setTimeout(() => {
+        timer = null;
+        func.apply(context, args);
+      }, 500);
     };
   };
 
-  const update = debounce(function (e) {
-    console.log(e.target.value);
-    setName(e.target.value);
-    getData(e.target.value);
-  }, 1000);
-
-  const getData = (value) => {
-    axios.get(`https://api.github.com/users/${value}`).then((res) => {
-      console.log(res);
-      if (res.status === 200) {
-        setData(res.data);
-      }
-    });
+  const handleChange = (value) => {
+    if (value.length >= 3) {
+      axios
+        .get(`https://demo.dataverse.org/api/search?q=${value}`)
+        .then((res) => setSuggestions(res.data.data.items));
+    }
   };
 
+  const optimizedFn = useCallback(debounce(handleChange), []);
+
   return (
-    <div className="App">
+    <React.Fragment>
+      <h2 style={{ textAlign: "center" }}>Example of debouncing.</h2>
+
       <input
         type="text"
-        onChange={(e) => {
-          e.persist();
-          update(e);
-        }}
+        className="search"
+        placeholder="Enter something here..."
+        onChange={(e) => optimizedFn(e.target.value)}
       />
-      {data && (
-        <>
-          <div style={{ padding: 10 }}>
-            <img
-              src={data.avatar_url}
-              alt=""
-              style={{ height: "10%", width: "10%" }}
-            />
-          </div>
-        </>
-      )}
 
-      {data ? (data.name ? data.name : "" + " Node id = " + data.node_id) : ""}
-      <div>Bio: {data ? (data.bio ? data.bio : "") : ""}</div>
-    </div>
+      {suggestions.length > 0 && (
+        <div className="autocomplete">
+          {suggestions.map((el, i) => (
+            <div key={i} className="autocompleteItems">
+              <span>{el.name}</span>
+            </div>
+          ))}
+        </div>
+      )}
+    </React.Fragment>
   );
-}
+};
 
 export default FirstComponent;

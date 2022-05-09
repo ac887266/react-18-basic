@@ -5,7 +5,6 @@ import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 
 const rootElement = document.getElementById("root");
-console.log(rootElement);
 const root = createRoot(rootElement);
 
 root.render(
