@@ -4,7 +4,7 @@ import FirstComponent from "../FirstComponent/FirstComponent";
 export default function Router() {
   return (
     <>
-      <div className="App">
+      <div className="App" id="content">
         <BrowserRouter>
           <Routes>
             <Route path="/first" element={<FirstComponent />} />
