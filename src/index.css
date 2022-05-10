@@ -12,6 +12,27 @@ code {
     monospace;
 }
 
+/* Works on Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: blue orange;
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 5px;
+}
+
+*::-webkit-scrollbar-track {
+  background: gray;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  border-radius: 20px;
+  border: 3px solid gray;
+}
+
 .text-small {
   font-size: 0.9rem;
 }
@@ -46,4 +67,25 @@ footer {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+}
+
+.sidebar-custom-list-item {
+  transition: all 0.3s;
+}
+
+.sidebar-custom-list-item:hover {
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  border-radius: 5px;
+}
+
+.sidebar-custom-list-item-text {
+  transition: all 0.3s;
+}
+
+.sidebar-custom-list-item-text:hover {
+  margin-left: 5px;
+}
+
+.main-drawer {
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }

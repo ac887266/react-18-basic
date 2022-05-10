@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import FirstComponent from "../FirstComponent/FirstComponent";
-import SecondComponent from "../FirstComponent/SecondComponent";
+import FirstComponent from "../../views/apps/FirstComponent/FirstComponent";
+import SecondComponent from "../../views/apps/SecondComponent/SecondComponent";
 
 export default function Router() {
   return (

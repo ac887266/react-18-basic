@@ -4,7 +4,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import SearchIcon from "@mui/icons-material/Search";
-import { Button, IconButton, InputBase, Menu, MenuItem } from "@mui/material";
+import { IconButton, InputBase, Menu, MenuItem } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Badge from "@mui/material/Badge";
 import Box from "@mui/material/Box";
@@ -17,7 +17,9 @@ import Typography from "@mui/material/Typography";
 import useScrollTrigger from "@mui/material/useScrollTrigger";
 import PropTypes from "prop-types";
 import * as React from "react";
-import Router from "../Router/Router";
+import Router from "../core/Router/Router";
+import ThemeChanger from "../core/themes/ThemeChanger";
+import Sidebar from "./Sidebar";
 
 function HideOnScroll(props) {
   const { children, window } = props;
@@ -47,7 +49,7 @@ HideOnScroll.propTypes = {
 export default function Layout1(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-
+  const [open, setOpen] = React.useState(false);
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
@@ -59,13 +61,13 @@ export default function Layout1(props) {
     setMobileMoreAnchorEl(null);
   };
 
+  const openDrawer = () => {
+    setOpen(!open);
+  };
+
   const handleMenuClose = () => {
     setAnchorEl(null);
     handleMobileMenuClose();
-  };
-
-  const changeTheme = () => {
-    props.changeLayoutTheme(!props.theme);
   };
 
   const handleMobileMenuOpen = (event) => {
@@ -186,9 +188,14 @@ export default function Layout1(props) {
     </Menu>
   );
 
+  const changeDrawer = (res) => {
+    setOpen(res);
+  };
+
   return (
     <React.Fragment>
       <CssBaseline />
+      <Sidebar open={open} changeDrawer={changeDrawer} />
       <HideOnScroll {...props}>
         <AppBar>
           <Toolbar>
@@ -198,6 +205,7 @@ export default function Layout1(props) {
               color="inherit"
               aria-label="open drawer"
               sx={{ mr: 2 }}
+              onClick={() => openDrawer()}
             >
               <MenuIcon />
             </IconButton>
@@ -209,9 +217,7 @@ export default function Layout1(props) {
             >
               MUI
             </Typography>
-            <Button variant="outlined" onClick={changeTheme}>
-              Theme
-            </Button>
+            <ThemeChanger />
             <Search>
               <SearchIconWrapper>
                 <SearchIcon />

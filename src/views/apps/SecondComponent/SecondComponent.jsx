@@ -1,6 +1,6 @@
 import React from "react";
 import ScrollIntoView from "react-scroll-into-view";
-import Spacer from "../common/Spacer";
+import Spacer from "../../../common/Spacer";
 
 const SecondComponent = () => {
   return (
