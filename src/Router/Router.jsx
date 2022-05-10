@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import FirstComponent from "../FirstComponent/FirstComponent";
+import SecondComponent from "../FirstComponent/SecondComponent";
 
 export default function Router() {
   return (
@@ -8,6 +9,7 @@ export default function Router() {
         <BrowserRouter>
           <Routes>
             <Route path="/first" element={<FirstComponent />} />
+            <Route path="/second" element={<SecondComponent />} />
           </Routes>
         </BrowserRouter>
       </div>
