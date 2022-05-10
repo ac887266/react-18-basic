@@ -1,13 +1,13 @@
-import Footer from "../common/Footer";
-import Header from "../common/Header";
-import Router from "../Router/Router";
+import Layout1 from "../common/Layout1";
 
-export default function MainLayout() {
+export default function MainLayout(props) {
+  const changeLayoutTheme = (res) => {
+    props.setLayoutTheme(res);
+  };
+
   return (
     <>
-      <Header />
-      <Router />
-      <Footer />
+      <Layout1 changeLayoutTheme={changeLayoutTheme} theme={props.theme} />
     </>
   );
 }
