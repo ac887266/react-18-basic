@@ -37,15 +37,21 @@ const FirstComponent = () => {
         onChange={(e) => optimizedFn(e.target.value)}
       />
 
-      {suggestions.length > 0 && (
-        <div className="autocomplete">
-          {suggestions.map((el, i) => (
-            <div key={i} className="autocompleteItems">
-              <span>{el.name}</span>
-            </div>
-          ))}
+      <div className="container">
+        <div className="row">
+          <div className="col-md-12">
+            {suggestions.length > 0 && (
+              <div className="autocomplete">
+                {suggestions.map((el, i) => (
+                  <div key={i} className="autocompleteItems">
+                    <span>{el.name}</span>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
-      )}
+      </div>
     </React.Fragment>
   );
 };
