@@ -145,15 +145,24 @@ export default function Sidebar(props) {
             </ListItem>
           ))}
         </List>
-        <Divider />
+        <Typography style={{ padding: "0 18px 0 18px", fontWeight: "500" }}>
+          Utility
+        </Typography>
         <List>
           {["All mail", "Trash", "Spam"].map((text, index) => (
-            <ListItem key={text} disablePadding>
+            <ListItem
+              key={text}
+              disablePadding
+              className="sidebar-custom-list-item"
+            >
               <ListItemButton>
                 <ListItemIcon>
                   {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
                 </ListItemIcon>
-                <ListItemText primary={text} />
+                <ListItemText
+                  className="sidebar-custom-list-item-text"
+                  primary={text}
+                />
               </ListItemButton>
             </ListItem>
           ))}

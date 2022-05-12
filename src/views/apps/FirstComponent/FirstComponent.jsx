@@ -1,3 +1,4 @@
+import { TextField } from "@mui/material";
 import axios from "axios";
 import React, { useCallback, useState } from "react";
 
@@ -30,10 +31,11 @@ const FirstComponent = () => {
     <React.Fragment>
       <h2 style={{ textAlign: "center" }}>Example of debouncing.</h2>
 
-      <input
-        type="text"
-        className="search"
-        placeholder="Enter something here..."
+      <TextField
+        required
+        size="small"
+        id="outlined-required"
+        label="Enter something here..."
         onChange={(e) => optimizedFn(e.target.value)}
       />
 
