@@ -1,4 +1,4 @@
-import { TextField } from "@mui/material";
+import { Card, CardContent, Grid, TextField, Typography } from "@mui/material";
 import axios from "axios";
 import React, { useCallback, useState } from "react";
 
@@ -29,16 +29,24 @@ const FirstComponent = () => {
 
   return (
     <React.Fragment>
-      <h2 style={{ textAlign: "center" }}>Example of debouncing.</h2>
-
-      <TextField
-        required
-        size="small"
-        id="outlined-required"
-        label="Enter something here..."
-        onChange={(e) => optimizedFn(e.target.value)}
-      />
-
+      <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+        Example of debouncing.
+      </Typography>
+      <Grid container spacing={2}>
+        <Grid item xs={4}>
+          <Card sx={{ minWidth: 275 }}>
+            <CardContent>
+              <TextField
+                required
+                size="small"
+                id="outlined-required"
+                label="Enter something here..."
+                onChange={(e) => optimizedFn(e.target.value)}
+              />
+            </CardContent>
+          </Card>
+        </Grid>
+      </Grid>
       <div className="container">
         <div className="row">
           <div className="col-md-12">
